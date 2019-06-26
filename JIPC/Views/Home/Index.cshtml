@@ -1,0 +1,33 @@
+﻿@model JIPC.Models.Assignment
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>My Super Awesome App Thing That Does Cool Stuff</h1>
+    <br />
+    <p class="getString"> This is where we are going to show the Decoded string we got back from the API below</p>
+    <br />
+    <h4>Decoded String: @Model.DecodedString </h4>
+</div>
+
+<div class="post_lastname">
+    <p class="last_name"> Below is a form text box populated with the decoded string and a button to send a POST request with that string in the body</p>
+
+    @using (Html.BeginForm("PostString", "Home", FormMethod.Post))
+    {
+    <div class="form-group">
+        @Html.LabelFor(m => m.DecodedString)
+        @Html.TextBoxFor(m => m.DecodedString, new { @class = "form-control"})
+    </div>
+    <button type="POST" class="btn btn-primary">Submit</button>
+    }
+
+    @if (Model.IsSuccess == true)
+    {
+    <div>
+        <p>POST SUCCESSFUL!</p>
+    </div>
+    }
+</div>
